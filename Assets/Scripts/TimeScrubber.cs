@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class TimeScrubber : MonoBehaviour {
 
-
+	public Slider slider;
+	public float animationTime;
+	public string animationName;
+	private bool paused = false;
 
 	// Use this for initialization
 	void Start () 
@@ -20,32 +24,50 @@ public class TimeScrubber : MonoBehaviour {
 
 	void FixedUpdate () 
 	{
-		var animator = this.GetComponent<Animator> ();
 
-
+		
 
 		if (Input.GetKeyDown(KeyCode.P)) 
 		{
-			((AnimationState)this.animation["Walk"]).speed = 0f;
+			PauseAnimation(animationName);
 		}
 
 		if (Input.GetKeyDown(KeyCode.S))
 		{
-			((AnimationState)this.animation["Walk"]).speed = 1f;
+			ContinueAnimation(animationName);
 		}
 
-		if (Input.GetKeyDown (KeyCode.Q)) 
+		GotoPositionInAnimation(animationName, animationTime * (1 - slider.value));
+		UpdateSliderPosition ();
+	}
+
+	void PauseAnimation(string name)
+	{
+		((AnimationState)this.animation[name]).speed = 0f;
+		paused = true;
+	}
+
+	void ContinueAnimation(string name)
+	{
+		((AnimationState)this.animation[name]).speed = 1f;
+		paused = false;
+	}
+
+	void GotoPositionInAnimation(string name, float position)
+	{
+		if (paused) 
 		{
-			((AnimationState)this.animation["Walk"]).enabled = true;
-			((AnimationState)this.animation["Walk"]).weight = 1f;
-			((AnimationState)this.animation["Walk"]).time = 10f;
-			//foreach (AnimationState state in ) 
-			//{
-				//state.enabled = true;
-				//state.weight = 1f;
-				//state.speed = 0;
-				//state.time = 10f;
-			//}
+			((AnimationState)this.animation [name]).time = position;
 		}
+	}
+
+	void UpdateSliderPosition()
+	{
+		if (!paused) 
+		{
+			var currentTime = ((AnimationState)this.animation [animationName]).time;
+			slider.value = 1 - (currentTime / animationTime);
+		}
+
 	}
 }
