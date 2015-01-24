@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour 
 {
@@ -20,6 +21,9 @@ public class PlayerController : MonoBehaviour
 	
 	Quaternion originalRotation;
 	bool paused = false;
+
+	private List<InteractiveController> trackedItems;
+	private InteractiveController lastHighlightedItem = null;
 
 	void Update ()
 	{
@@ -65,7 +69,7 @@ public class PlayerController : MonoBehaviour
 		var ray = new Ray(cam.position, cam.forward);
 		
 		RaycastHit hit;
-		
+
 		if(Physics.Raycast (ray, out hit, 1000))
 		{
 			var interactiveObject = hit.collider.gameObject.GetComponent<InteractiveController>();
@@ -73,7 +77,34 @@ public class PlayerController : MonoBehaviour
 			if (interactiveObject != null)
 			{
 				interactiveObject.Highlight();
-			}	
+
+				if (lastHighlightedItem == null )
+				{
+					lastHighlightedItem = interactiveObject;
+				}
+
+				if (!trackedItems.Contains(interactiveObject))
+				{
+					trackedItems.Add(interactiveObject);
+				}
+			}
+
+			if ( lastHighlightedItem != interactiveObject)
+			{
+				lastHighlightedItem.DontHighlight();
+			}
+		}
+		else
+		{
+			foreach(var item in trackedItems)
+			{
+				//item.DontHighlight();
+			}
+
+			if (lastHighlightedItem != null)
+			{
+				lastHighlightedItem.DontHighlight();
+			}
 		}
 	}
 	
@@ -83,6 +114,8 @@ public class PlayerController : MonoBehaviour
 		if (rigidbody)
 			rigidbody.freezeRotation = true;
 		originalRotation = transform.localRotation;
+
+		trackedItems = new List<InteractiveController>();
 	}
 	
 	public static float ClampAngle (float angle, float min, float max)
