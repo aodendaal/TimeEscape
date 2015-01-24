@@ -4,10 +4,12 @@ using System.Collections;
 public class InteractiveController : MonoBehaviour 
 {
 	private bool highlighting;
-
+	public Sprite spriteToRender;
 	// Use this for initialization
 	void Start () {
-	
+		var icon = this.gameObject.GetComponentInChildren<SpriteRenderer>();
+		icon.sprite = spriteToRender;
+
 	}
 	
 	// Update is called once per frame
