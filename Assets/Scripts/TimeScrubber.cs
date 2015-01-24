@@ -7,6 +7,7 @@ public class TimeScrubber : MonoBehaviour {
 	public Slider slider;
 	public float animationTime;
 	public string animationName;
+	public KeyCode pauseToggle;
 	private bool paused = false;
 
 	// Use this for initialization
@@ -24,17 +25,17 @@ public class TimeScrubber : MonoBehaviour {
 
 	void FixedUpdate () 
 	{
-
-		
-
-		if (Input.GetKeyDown(KeyCode.P)) 
+		if (Input.GetKeyDown(pauseToggle)) 
 		{
-			PauseAnimation(animationName);
-		}
-
-		if (Input.GetKeyDown(KeyCode.S))
-		{
-			ContinueAnimation(animationName);
+			if (paused)
+			{
+				ContinueAnimation(animationName);
+			
+			}
+			else
+			{
+				PauseAnimation(animationName);
+			}
 		}
 
 		GotoPositionInAnimation(animationName, animationTime * (1 - slider.value));
@@ -45,12 +46,18 @@ public class TimeScrubber : MonoBehaviour {
 	{
 		((AnimationState)this.animation[name]).speed = 0f;
 		paused = true;
+
+		var playerController = Camera.main.GetComponent<PlayerController>();
+		playerController.Pause();
 	}
 
 	void ContinueAnimation(string name)
 	{
 		((AnimationState)this.animation[name]).speed = 1f;
 		paused = false;
+
+		var playerController = Camera.main.GetComponent<PlayerController>();
+		playerController.Continue();
 	}
 
 	void GotoPositionInAnimation(string name, float position)

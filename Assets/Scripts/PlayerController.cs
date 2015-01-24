@@ -19,9 +19,12 @@ public class PlayerController : MonoBehaviour
 	float rotationY = 0f;
 	
 	Quaternion originalRotation;
-	
+	bool paused = false;
+
 	void Update ()
 	{
+		if (DisabledMouseInput()) 
+			return;
 		if (axes == RotationAxes.MouseXAndY)
 		{
 			// Read the mouse input axis
@@ -69,5 +72,20 @@ public class PlayerController : MonoBehaviour
 		if (angle > 360f)
 			angle -= 360f;
 		return Mathf.Clamp (angle, min, max);
+	}
+
+	bool DisabledMouseInput()
+	{
+		return paused;
+	}
+
+	public void Continue()
+	{
+		paused = false;
+	}
+
+	public void Pause()
+	{
+		paused = true;
 	}
 }
