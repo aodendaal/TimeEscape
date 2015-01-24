@@ -40,8 +40,8 @@ public class InteractiveController : MonoBehaviour
 			if (DoesPlayerHaveItem(needsItem))
 			{
 				solvedInteraction = true;
-				var anim = this.gameObject.GetComponentsInChildren<Animator>()[0];
-				anim.SetBool("InteractSolved", solvedInteraction);
+				//var anim = this.gameObject.GetComponentsInChildren<Animator>()[0];
+				//anim.SetBool("InteractSolved", solvedInteraction);
 			}
 		}
 	}

@@ -71,7 +71,7 @@ public class TimeScrubber : MonoBehaviour {
 	{
 		if (!paused) 
 		{
-			var currentTime = ((AnimationState)this.animation [animationName]).time;
+			var currentTime = ((AnimationState)this.animation[animationName]).time;
 			slider.value = 1 - (currentTime / animationTime);
 		}
 
