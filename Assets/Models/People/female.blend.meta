@@ -3,25 +3,11 @@ guid: 493299cd830a0554699b91c3ccb7c91c
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: Arm_L
-    100002: Arm_R
-    100004: Armature
-    100006: Body
-    100008: //RootNode
-    100010: Icosphere
-    100012: Leg_L
-    100014: Leg_R
-    400000: Arm_L
-    400002: Arm_R
-    400004: Armature
-    400006: Body
-    400008: //RootNode
-    400010: Icosphere
-    400012: Leg_L
-    400014: Leg_R
-    2300000: Icosphere
-    3300000: Icosphere
-    4300000: Icosphere
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Female
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -39,7 +25,35 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Default Take
+      takeName: Default Take
+      firstFrame: 0
+      lastFrame: 17999
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 0
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -59,7 +73,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
-    normalImportMode: 0
+    normalImportMode: 1
     tangentImportMode: 1
   importAnimation: 1
   copyAvatar: 0
