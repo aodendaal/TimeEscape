@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 493299cd830a0554699b91c3ccb7c91c
+guid: 464d132c5f71b744e8f06907fe70f545
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
@@ -7,7 +7,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Female
+    4300000: human
     7400000: Default Take
     9500000: //RootNode
   materials:
