@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
 	private List<InteractiveController> trackedItems;
 	private InteractiveController lastHighlightedItem = null;
 
+	public List<Items> inventory = new List<Items>();
+
 	void Update ()
 	{
 		if (DisabledMouseInput()) 
@@ -77,11 +79,7 @@ public class PlayerController : MonoBehaviour
 			if (interactiveObject != null)
 			{
 				interactiveObject.Highlight();
-
-				if (lastHighlightedItem == null )
-				{
-					lastHighlightedItem = interactiveObject;
-				}
+				lastHighlightedItem = interactiveObject;
 			}
 
 			if ( lastHighlightedItem != interactiveObject)
@@ -130,5 +128,18 @@ public class PlayerController : MonoBehaviour
 	public void Pause()
 	{
 		paused = true;
+	}
+
+	public bool HasItem(Items item)
+	{
+		return inventory.Contains(item);
+	}
+
+	public void GivesItem(Items item)
+	{
+		if (!inventory.Contains(item))
+		{
+			inventory.Add(item);
+		}
 	}
 }
