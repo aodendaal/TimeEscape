@@ -82,11 +82,6 @@ public class PlayerController : MonoBehaviour
 				{
 					lastHighlightedItem = interactiveObject;
 				}
-
-				if (!trackedItems.Contains(interactiveObject))
-				{
-					trackedItems.Add(interactiveObject);
-				}
 			}
 
 			if ( lastHighlightedItem != interactiveObject)
@@ -96,11 +91,6 @@ public class PlayerController : MonoBehaviour
 		}
 		else
 		{
-			foreach(var item in trackedItems)
-			{
-				//item.DontHighlight();
-			}
-
 			if (lastHighlightedItem != null)
 			{
 				lastHighlightedItem.DontHighlight();
