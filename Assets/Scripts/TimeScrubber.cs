@@ -7,7 +7,7 @@ public class TimeScrubber : MonoBehaviour {
 	public Slider slider;
 	public float animationTime;
 	public string animationName;
-	public KeyCode pauseToggle;
+	public KeyCode pauseToggleButton;
 	private bool paused = false;
 
 	// Use this for initialization
@@ -25,12 +25,11 @@ public class TimeScrubber : MonoBehaviour {
 
 	void FixedUpdate () 
 	{
-		if (Input.GetKeyDown(pauseToggle)) 
+		if (Input.GetKeyDown(pauseToggleButton)) 
 		{
 			if (paused)
 			{
 				ContinueAnimation(animationName);
-			
 			}
 			else
 			{

@@ -55,6 +55,26 @@ public class PlayerController : MonoBehaviour
 			Quaternion yQuaternion = Quaternion.AngleAxis (-rotationY, Vector3.right);
 			transform.localRotation = originalRotation * yQuaternion;
 		}
+
+		CheckForInteractiveObject();
+	}
+
+	void CheckForInteractiveObject()
+	{
+		var cam = Camera.main.transform;
+		var ray = new Ray(cam.position, cam.forward);
+		
+		RaycastHit hit;
+		
+		if(Physics.Raycast (ray, out hit, 1000))
+		{
+			var interactiveObject = hit.collider.gameObject.GetComponent<InteractiveController>();
+			
+			if (interactiveObject != null)
+			{
+				interactiveObject.Highlight();
+			}	
+		}
 	}
 	
 	void Start ()
