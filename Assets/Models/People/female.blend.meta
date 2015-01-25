@@ -4,12 +4,27 @@ ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Arm_L
+    100004: Arm_R
+    100006: Armature
+    100008: Base
+    100010: Female
+    100012: Leg_L
+    100014: Leg_R
     400000: //RootNode
+    400002: Arm_L
+    400004: Arm_R
+    400006: Armature
+    400008: Base
+    400010: Female
+    400012: Leg_L
+    400014: Leg_R
     2300000: //RootNode
     3300000: //RootNode
     4300000: Female
     7400000: Default Take
     9500000: //RootNode
+    13700000: Female
   materials:
     importMaterials: 1
     materialName: 0
@@ -45,7 +60,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
-    normalImportMode: 0
+    normalImportMode: 1
     tangentImportMode: 1
   importAnimation: 1
   copyAvatar: 0
