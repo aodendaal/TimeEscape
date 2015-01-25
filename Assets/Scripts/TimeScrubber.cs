@@ -13,7 +13,7 @@ public class TimeScrubber : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-			
+		slider.gameObject.SetActive(false);		
 	}
 	
 	// Update is called once per frame
@@ -43,6 +43,7 @@ public class TimeScrubber : MonoBehaviour {
 
 	void PauseAnimation(string name)
 	{
+		slider.gameObject.SetActive(true);
 		((AnimationState)this.animation[name]).speed = 0f;
 		paused = true;
 
@@ -52,6 +53,7 @@ public class TimeScrubber : MonoBehaviour {
 
 	void ContinueAnimation(string name)
 	{
+		slider.gameObject.SetActive(false);
 		((AnimationState)this.animation[name]).speed = 1f;
 		paused = false;
 
