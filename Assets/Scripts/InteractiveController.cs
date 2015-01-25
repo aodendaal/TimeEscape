@@ -44,13 +44,10 @@ public class InteractiveController : MonoBehaviour
 				GivePlayerItem();
 			}
 
-			if (placedItem && DoesPlayerHaveItem(needsItem))
-			{
-				solvedInteraction = true;
-			}
-			else if (!placedItem && DoesPlayerHaveItem(needsItem))
+			if (!placedItem && DoesPlayerHaveItem(needsItem))
 			{
 				placedItem = true;
+				solvedInteraction = true;
 			}
 		}
 	}
