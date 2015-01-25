@@ -37,7 +37,7 @@ public class TimeScrubber : MonoBehaviour {
 			}
 		}
 
-		GotoPositionInAnimation(animationName, animationTime * (1 - slider.value));
+		GotoPositionInAnimation(animationName, animationTime * (slider.value));
 		UpdateSliderPosition ();
 	}
 
@@ -72,7 +72,7 @@ public class TimeScrubber : MonoBehaviour {
 		if (!paused) 
 		{
 			var currentTime = ((AnimationState)this.animation[animationName]).time;
-			slider.value = 1 - (currentTime / animationTime);
+			slider.value = (currentTime / animationTime);
 		}
 
 	}

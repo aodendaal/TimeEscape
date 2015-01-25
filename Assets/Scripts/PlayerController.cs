@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
 	{
 		if (DisabledMouseInput()) 
 			return;
+
+
 		if (axes == RotationAxes.MouseXAndY)
 		{
 			// Read the mouse input axis

@@ -10,6 +10,11 @@ TextureImporter:
     21300010: Interaction_Icons_14
     21300012: Interaction_Icons_16
     21300014: Interaction_Icons_18
+    21300016: Interaction_Icons_1
+    21300018: Interaction_Icons_3
+    21300020: Interaction_Icons_5
+    21300022: Interaction_Icons_6
+    21300024: Interaction_Icons_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -54,82 +59,82 @@ TextureImporter:
     - name: Interaction_Icons_0
       rect:
         serializedVersion: 2
-        x: 311
-        y: 1032
-        width: 262
-        height: 242
+        x: 0
+        y: 768
+        width: 1024
+        height: 256
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Interaction_Icons_1
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 768
+        width: 1024
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Interaction_Icons_2
       rect:
         serializedVersion: 2
-        x: 1001
-        y: 1026
-        width: 1055
-        height: 262
+        x: 0
+        y: 512
+        width: 1024
+        height: 256
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Interaction_Icons_3
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 512
+        width: 1024
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Interaction_Icons_4
       rect:
         serializedVersion: 2
-        x: 36
-        y: 694
-        width: 733
+        x: 0
+        y: 256
+        width: 1024
         height: 256
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Interaction_Icons_8
+    - name: Interaction_Icons_5
       rect:
         serializedVersion: 2
-        x: 32
-        y: 351
-        width: 751
-        height: 259
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Interaction_Icons_10
-      rect:
-        serializedVersion: 2
-        x: 1001
-        y: 696
-        width: 723
-        height: 242
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Interaction_Icons_14
-      rect:
-        serializedVersion: 2
-        x: 1003
-        y: 358
-        width: 742
-        height: 250
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Interaction_Icons_16
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 735
-        height: 260
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Interaction_Icons_18
-      rect:
-        serializedVersion: 2
-        x: 1007
-        y: 32
-        width: 754
+        x: 1024
+        y: 256
+        width: 1024
         height: 256
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Interaction_Icons_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1024
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Interaction_Icons_7
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 1024
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
