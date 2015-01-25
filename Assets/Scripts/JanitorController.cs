@@ -28,12 +28,5 @@ public class JanitorController : MonoBehaviour
 			otherJanitor.SetActive(true);
 			this.gameObject.SetActive(false);
 		}
-		//var anim = this.gameObject.GetComponent<Animator>();
-		//anim.SetBool("CleanFloor", script.solvedInteraction);
-
-		//this.gameObject.SetActive(false);
-
-		//var timeScrubber = this.gameObject.GetComponent<TimeScrubber>();
-		//timeScrubber.animationName = this.newAnimationName;
 	}
 }
