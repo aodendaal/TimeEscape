@@ -13,7 +13,7 @@ public class TimeScrubber : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-			
+		slider.gameObject.SetActive(false);		
 	}
 	
 	// Update is called once per frame
@@ -37,12 +37,13 @@ public class TimeScrubber : MonoBehaviour {
 			}
 		}
 
-		GotoPositionInAnimation(animationName, animationTime * (1 - slider.value));
+		GotoPositionInAnimation(animationName, animationTime * (slider.value));
 		UpdateSliderPosition ();
 	}
 
 	void PauseAnimation(string name)
 	{
+		slider.gameObject.SetActive(true);
 		((AnimationState)this.animation[name]).speed = 0f;
 		paused = true;
 
@@ -52,6 +53,7 @@ public class TimeScrubber : MonoBehaviour {
 
 	void ContinueAnimation(string name)
 	{
+		slider.gameObject.SetActive(false);
 		((AnimationState)this.animation[name]).speed = 1f;
 		paused = false;
 
@@ -71,8 +73,8 @@ public class TimeScrubber : MonoBehaviour {
 	{
 		if (!paused) 
 		{
-			var currentTime = ((AnimationState)this.animation [animationName]).time;
-			slider.value = 1 - (currentTime / animationTime);
+			var currentTime = ((AnimationState)this.animation[animationName]).time;
+			slider.value = (currentTime / animationTime);
 		}
 
 	}

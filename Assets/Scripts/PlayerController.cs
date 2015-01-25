@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
 	Quaternion originalRotation;
 	bool paused = false;
 
-	private List<InteractiveController> trackedItems;
 	private InteractiveController lastHighlightedItem = null;
 
 	public List<Items> inventory = new List<Items>();
@@ -31,6 +30,8 @@ public class PlayerController : MonoBehaviour
 	{
 		if (DisabledMouseInput()) 
 			return;
+
+
 		if (axes == RotationAxes.MouseXAndY)
 		{
 			// Read the mouse input axis
@@ -102,8 +103,6 @@ public class PlayerController : MonoBehaviour
 		if (rigidbody)
 			rigidbody.freezeRotation = true;
 		originalRotation = transform.localRotation;
-
-		trackedItems = new List<InteractiveController>();
 	}
 	
 	public static float ClampAngle (float angle, float min, float max)

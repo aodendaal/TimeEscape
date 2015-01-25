@@ -18,30 +18,39 @@ public class InteractiveController : MonoBehaviour
 	public Items givesItem;
 	public Sprite hasItemSprite;
 	public Sprite missingItemSprite;
-
+	public bool itemAvailable = false;
 	public bool solvedInteraction = false;
+
+	private bool placedItem = false;
 	// Use this for initialization
 	void Start () 
 	{
 
 
 	}
-	
+
+	public void MakeItemAvailable()
+	{
+		itemAvailable = true;
+	}
+
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Input.GetKeyUp(interactButton))
+		if (Input.GetKeyUp(interactButton) && highlighting)
 		{
 			if (givesItem != Items.None)
 			{			
 				GivePlayerItem();
 			}
 
-			if (DoesPlayerHaveItem(needsItem))
+			if (placedItem && DoesPlayerHaveItem(needsItem))
 			{
 				solvedInteraction = true;
-				var anim = this.gameObject.GetComponentsInChildren<Animator>()[0];
-				anim.SetBool("InteractSolved", solvedInteraction);
+			}
+			else if (!placedItem && DoesPlayerHaveItem(needsItem))
+			{
+				placedItem = true;
 			}
 		}
 	}
@@ -56,19 +65,20 @@ public class InteractiveController : MonoBehaviour
 	{
 		var playerController = Camera.main.gameObject.GetComponentInChildren<PlayerController>();
 		playerController.GivesItem(givesItem);
+
 		givesItem = Items.None;
 	}
 
     public void Highlight()
 	{
-		var highlighting = true;
+		highlighting = true;
 		UpdateHighlight(highlighting);
 
 	}
 
 	public void DontHighlight()
 	{
-		var highlighting = false;
+		highlighting = false;
 		UpdateHighlight(highlighting);
 	}
 
@@ -81,7 +91,7 @@ public class InteractiveController : MonoBehaviour
 		{
 			icon.sprite = missingItemSprite;
 		}
-		else if (needsItem == Items.None && givesItem != Items.None)
+		else if (needsItem == Items.None && givesItem != Items.None && itemAvailable)
 		{
 			icon.sprite = hasItemSprite;
 		}
