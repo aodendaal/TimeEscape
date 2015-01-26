@@ -6,14 +6,18 @@ public class TimeScrubber : MonoBehaviour {
 
 	public Slider slider;
 	public float animationTime;
-	public string animationName;
+	public string[] animationNames;
 	public KeyCode pauseToggleButton;
+
+	public string tagName;
+	public int layerNumber;
+
+	public bool state;
 	private bool paused = false;
 
-	// Use this for initialization
 	void Start () 
 	{
-		slider.gameObject.SetActive(false);		
+		slider.gameObject.SetActive(true);		
 	}
 	
 	// Update is called once per frame
@@ -23,49 +27,88 @@ public class TimeScrubber : MonoBehaviour {
 
 	}
 
+	private void ScrubTimeFor(string tag, int layer)
+	{
+		var gameObjects = GameObject.FindGameObjectsWithTag(tag);
+			
+		foreach(var item in gameObjects)
+		{
+			var animator = item.GetComponent<Animator>();
+			
+			if (animator.runtimeAnimatorController == null)
+				continue;
+			
+			UnityEditorInternal.AnimatorController ac = animator.runtimeAnimatorController as UnityEditorInternal.AnimatorController;
+			
+			var stateCount = ac.GetLayer(layer).stateMachine.stateCount;
+			
+			for(int i = 0; i < stateCount; i++)
+			{
+				var name = ac.GetLayer(layer).stateMachine.GetState(i).name;
+				var current = animator.GetCurrentAnimatorStateInfo(layer);
+				if (current.IsName(name))
+				{
+					animator.CrossFade(name, 0f, 0, slider.value);
+				}
+			}
+		}
+	}
+
 	void FixedUpdate () 
 	{
 		if (Input.GetKeyDown(pauseToggleButton)) 
 		{
 			if (paused)
 			{
-				ContinueAnimation(animationName);
+				ContinueAnimation();
 			}
 			else
 			{
-				PauseAnimation(animationName);
+				PauseAnimation();
 			}
 		}
 
-		GotoPositionInAnimation(animationName, animationTime * (slider.value));
+		GotoPositionInAnimation(animationNames, animationTime * (slider.value));
 		UpdateSliderPosition ();
 	}
 
-	void PauseAnimation(string name)
+	void PauseAnimation()
 	{
-		slider.gameObject.SetActive(true);
-		((AnimationState)this.animation[name]).speed = 0f;
-		paused = true;
+		var gameObjects = GameObject.FindGameObjectsWithTag(tagName);
 
+		foreach(var item in gameObjects)
+		{
+			var animator = item.GetComponent<Animator>();
+			animator.speed = 0f;
+		}
+
+		paused = true;
+		slider.gameObject.SetActive(paused);
 		var playerController = Camera.main.GetComponent<PlayerController>();
 		playerController.Pause();
 	}
 
-	void ContinueAnimation(string name)
+	void ContinueAnimation()
 	{
-		slider.gameObject.SetActive(false);
-		((AnimationState)this.animation[name]).speed = 1f;
-		paused = false;
+		var gameObjects = GameObject.FindGameObjectsWithTag(tagName);
+		
+		foreach(var item in gameObjects)
+		{
+			var animator = item.GetComponent<Animator>();
+			animator.speed = 1f;
+		}
 
+		paused = false;
+		slider.gameObject.SetActive(paused);
 		var playerController = Camera.main.GetComponent<PlayerController>();
 		playerController.Continue();
 	}
 
-	void GotoPositionInAnimation(string name, float position)
+	void GotoPositionInAnimation(string[] names, float position)
 	{
 		if (paused) 
 		{
-			((AnimationState)this.animation [name]).time = position;
+			ScrubTimeFor(tagName, layerNumber);
 		}
 	}
 
@@ -73,9 +116,14 @@ public class TimeScrubber : MonoBehaviour {
 	{
 		if (!paused) 
 		{
-			var currentTime = ((AnimationState)this.animation[animationName]).time;
-			slider.value = (currentTime / animationTime);
+			var gameObjects = GameObject.FindGameObjectsWithTag(tagName);
+			
+			foreach(var item in gameObjects)
+			{
+				var animator = item.GetComponent<Animator>();
+				var current = animator.GetCurrentAnimatorStateInfo(layerNumber);
+				slider.value = current.normalizedTime;
+			}
 		}
-
 	}
 }
