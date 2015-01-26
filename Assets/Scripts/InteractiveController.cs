@@ -111,4 +111,9 @@ public class InteractiveController : MonoBehaviour
 		var anim = this.gameObject.GetComponentsInChildren<Animator>()[0];
 		anim.SetBool("Interact", highlighting);
 	}
+
+	public void RemoveItem()
+	{
+		itemAvailable = false;
+	}
 }

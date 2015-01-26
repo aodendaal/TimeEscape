@@ -24,4 +24,14 @@ public class EventController : MonoBehaviour {
 		}
 
 	}
+
+	public void TakeItem(Items item)
+	{
+		var script = interactionObject.GetComponent<InteractiveController>();
+		if (script.givesItem == item)
+		{
+			script.RemoveItem();
+		}
+		
+	}
 }
