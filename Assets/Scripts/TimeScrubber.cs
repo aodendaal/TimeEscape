@@ -16,7 +16,7 @@ public class TimeScrubber : MonoBehaviour {
 
 	void Start () 
 	{
-		slider.gameObject.SetActive(true);		
+		slider.gameObject.SetActive(false);		
 	}
 	
 	// Update is called once per frame
