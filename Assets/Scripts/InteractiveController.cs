@@ -20,6 +20,7 @@ public class InteractiveController : MonoBehaviour
 	public Sprite missingItemSprite;
 	public bool itemAvailable = false;
 	public bool solvedInteraction = false;
+	public GameObject objectToInteractWith = null;
 
 	private bool placedItem = false;
 	// Use this for initialization
@@ -42,6 +43,7 @@ public class InteractiveController : MonoBehaviour
 			if (givesItem != Items.None)
 			{			
 				GivePlayerItem();
+
 			}
 
 			if (!placedItem && DoesPlayerHaveItem(needsItem))
@@ -62,7 +64,7 @@ public class InteractiveController : MonoBehaviour
 	{
 		var playerController = Camera.main.gameObject.GetComponentInChildren<PlayerController>();
 		playerController.GivesItem(givesItem);
-
+		objectToInteractWith.GetComponent<MeshRenderer>().enabled = false;
 		givesItem = Items.None;
 	}
 
