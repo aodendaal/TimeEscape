@@ -38,6 +38,15 @@ public class InteractiveController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+		if (objectToInteractWith != null && objectToInteractWith.activeSelf)
+		{
+			itemAvailable = true;
+		}
+		else
+		{
+			itemAvailable = false;
+		}
+
 		if (Input.GetKeyUp(interactButton) && highlighting)
 		{
 			if (givesItem != Items.None)
