@@ -6,7 +6,7 @@ public class TimeScrubber : MonoBehaviour {
 
 	public Slider slider;
 	public float animationTime;
-	public string[] animationNames;
+	//public string[] animationNames;
 	public KeyCode pauseToggleButton;
 
 	public string tagName;
@@ -67,7 +67,7 @@ public class TimeScrubber : MonoBehaviour {
 			}
 		}
 
-		GotoPositionInAnimation(animationNames, animationTime * (slider.value));
+		GotoPositionInAnimation();
 		UpdateSliderPosition ();
 	}
 
@@ -103,7 +103,7 @@ public class TimeScrubber : MonoBehaviour {
 		playerController.Continue();
 	}
 
-	void GotoPositionInAnimation(string[] names, float position)
+	void GotoPositionInAnimation()
 	{
 		if (paused) 
 		{
