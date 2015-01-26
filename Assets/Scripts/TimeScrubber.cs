@@ -12,7 +12,6 @@ public class TimeScrubber : MonoBehaviour {
 	public string tagName;
 	public int layerNumber;
 
-	public bool state;
 	private bool paused = false;
 
 	void Start () 
