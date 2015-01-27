@@ -6,7 +6,7 @@ public class TimeScrubber : MonoBehaviour {
 
 	public Slider slider;
 	public float animationTime;
-	//public string[] animationNames;
+	public string[] animationNames;
 	public KeyCode pauseToggleButton;
 
 	public string tagName;
@@ -39,10 +39,21 @@ public class TimeScrubber : MonoBehaviour {
 			
 			if (animator.runtimeAnimatorController == null)
 				continue;
-			
-			UnityEditorInternal.AnimatorController ac = animator.runtimeAnimatorController as UnityEditorInternal.AnimatorController;
-			
-			var stateCount = ac.GetLayer(layer).stateMachine.stateCount;
+
+
+			foreach(var name in animationNames)
+			{
+				var current = animator.GetCurrentAnimatorStateInfo(layer);
+				if (current.IsName(name))
+				{
+					animator.CrossFade(name, 0f, 0, slider.value);
+				}
+			}
+
+			//RuntimeAnimatorController ac = animator.runtimeAnimatorController as RuntimeAnimatorController;
+
+			//var bob = "test";
+			/**var stateCount = ac.GetLayer(layer).stateMachine.stateCount;
 			
 			for(int i = 0; i < stateCount; i++)
 			{
@@ -50,9 +61,9 @@ public class TimeScrubber : MonoBehaviour {
 				var current = animator.GetCurrentAnimatorStateInfo(layer);
 				if (current.IsName(name))
 				{
-					animator.CrossFade(name, 0f, 0, slider.value);
+
 				}
-			}
+			}**/
 		}
 	}
 
