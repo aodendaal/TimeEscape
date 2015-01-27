@@ -13,10 +13,13 @@ public class TimeScrubber : MonoBehaviour {
 	public int layerNumber;
 
 	private bool paused = false;
+	public bool started = false;
 
 	void Start () 
 	{
-		slider.gameObject.SetActive(false);		
+		slider.gameObject.SetActive(false);	
+		this.PauseAnimation();
+		slider.gameObject.SetActive(false);	
 	}
 	
 	// Update is called once per frame
@@ -55,6 +58,9 @@ public class TimeScrubber : MonoBehaviour {
 
 	void FixedUpdate () 
 	{
+		if (!started)
+			return;
+
 		if (Input.GetKeyDown(pauseToggleButton)) 
 		{
 			if (paused)
@@ -87,7 +93,22 @@ public class TimeScrubber : MonoBehaviour {
 		playerController.Pause();
 	}
 
-	void ContinueAnimation()
+	public void StartGame()
+	{
+		started = true;
+		slider.value = 0f;
+		GotoPositionInAnimation();
+		ContinueAnimation();
+	}
+
+	public void StopGame()
+	{
+		started = false;
+		PauseAnimation();
+		slider.gameObject.SetActive(false);
+	}
+
+	public void ContinueAnimation()
 	{
 		var gameObjects = GameObject.FindGameObjectsWithTag(tagName);
 		

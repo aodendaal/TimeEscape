@@ -49,16 +49,33 @@ public class InteractiveController : MonoBehaviour
 
 		if (Input.GetKeyUp(interactButton) && highlighting)
 		{
-			if (givesItem != Items.None)
+			if (givesItem != Items.None && (objectToInteractWith != null && objectToInteractWith.activeSelf))
 			{			
 				GivePlayerItem();
 
 			}
 
-			if (!placedItem && DoesPlayerHaveItem(needsItem))
+ 			if (!placedItem && DoesPlayerHaveItem(needsItem))
 			{
 				placedItem = true;
 				solvedInteraction = true;
+				var gameobject = this;
+
+				var gum = GameObject.FindGameObjectWithTag("Gum");
+				var gumController = gum.GetComponent<GumController>();
+				if (gumController != null)
+				{
+					gumController.ShowGum();
+					Debug.Log("Show Gum!");
+
+				}
+				else
+				{
+					Debug.Log("Null");
+
+				}
+
+
 			}
 		}
 	}
@@ -73,7 +90,11 @@ public class InteractiveController : MonoBehaviour
 	{
 		var playerController = Camera.main.gameObject.GetComponentInChildren<PlayerController>();
 		playerController.GivesItem(givesItem);
-		objectToInteractWith.GetComponent<MeshRenderer>().enabled = false;
+		var components = objectToInteractWith.GetComponentsInChildren<MeshRenderer>();
+		foreach(var item in components)
+		{
+			item.enabled = false;
+		}
 		givesItem = Items.None;
 	}
 

@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 	float rotationY = 0f;
 	
 	Quaternion originalRotation;
-	bool paused = false;
+	public bool paused = false;
 
 	private InteractiveController lastHighlightedItem = null;
 

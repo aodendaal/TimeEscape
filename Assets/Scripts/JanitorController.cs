@@ -29,4 +29,34 @@ public class JanitorController : MonoBehaviour
 			this.gameObject.SetActive(false);
 		}
 	}
+
+	public void StartAnimation()
+	{
+		Debug.Log("Drop Mop you basterd!");
+		var components = this.gameObject.GetComponentsInChildren<Animator>();
+
+		foreach(var animator in components)
+		{
+			animator.SetBool("DropMop", true);
+		}
+	}
+
+	public void DropMop()
+	{
+		var mopController = this.gameObject.GetComponentInChildren<MopController>();
+		
+		mopController.MopInHand.SetActive(false);
+		mopController.MopOnFloor.SetActive(true);
+	}
+
+	public void DoneCleaning()
+	{
+		Debug.Log("Pick up Mop!");
+		var components = this.gameObject.GetComponentsInChildren<Animator>();
+		
+		foreach(var animator in components)
+		{
+			animator.SetBool("DropMop", false);
+		}
+	}
 }
