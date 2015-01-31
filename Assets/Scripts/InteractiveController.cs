@@ -32,7 +32,23 @@ public class InteractiveController : MonoBehaviour
 
 	public void MakeItemAvailable()
 	{
+		Debug.Log(givesItem.ToString() + " made available");
 		itemAvailable = true;
+	}
+
+	bool SolvedKeys()
+	{
+		return DoesPlayerHaveItem(needsItem) && givesItem == Items.Keys;
+	}
+
+	bool SolvedGum()
+	{
+		return givesItem == Items.Gum;
+	}
+
+	bool SolvedMop()
+	{
+		return givesItem == Items.Mop;
 	}
 
 	// Update is called once per frame
@@ -49,10 +65,10 @@ public class InteractiveController : MonoBehaviour
 
 		if (Input.GetKeyUp(interactButton) && highlighting)
 		{
-			if (givesItem != Items.None && (objectToInteractWith != null && objectToInteractWith.activeSelf))
+			if (givesItem != Items.None && itemAvailable && (SolvedKeys() || SolvedGum() || SolvedMop()))
 			{			
 				GivePlayerItem();
-
+				//solvedInteraction = true;
 			}
 
  			if (!placedItem && DoesPlayerHaveItem(needsItem))
